@@ -55,7 +55,44 @@ print("Problem 3:", int(max(factors)))
 ##############################################################################
 # of two three-digit numbers
 
+def is_palindrome(n):
+    n = str(n)
+    for i in range(int(len(n) / 2)):
+        if n[i] != n[-i-1]:
+            return(False)
+    return(True)
+
+top = 0
+for i in range(1000):
+    for j in range(1000):
+        if is_palindrome(i * j) and i * j > top:
+            top = i * j
+
+print("Problem 4:", top)
 
 ##############################################################################
 # 5 - Smallest Multiple
 ##############################################################################
+# ... evenly divisible by all numbers 1 through 20
+
+factors = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11] # only need these
+
+def works(n):
+    for factor in factors:
+        if n % factor != 0:
+            return(False)
+    return(True)
+
+n = 1
+while True:
+    if works(n):
+        break
+    n += 1
+
+print("Problem 5:", n)
+
+
+
+
+
+
