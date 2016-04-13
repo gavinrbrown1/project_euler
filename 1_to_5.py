@@ -75,7 +75,7 @@ print("Problem 4:", top)
 ##############################################################################
 # ... evenly divisible by all numbers 1 through 20
 
-factors = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11] # only need these
+factors = [19, 18, 17, 16, 15, 14, 13, 12, 11] # only need these
 
 def works(n):
     for factor in factors:
@@ -83,16 +83,10 @@ def works(n):
             return(False)
     return(True)
 
-n = 1
+n = 20
 while True:
     if works(n):
         break
-    n += 1
+    n += 20
 
 print("Problem 5:", n)
-
-
-
-
-
-
