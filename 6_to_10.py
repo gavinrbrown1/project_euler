@@ -51,24 +51,47 @@ print("Problem 8:", winner)
 ##############################################################################
 # 9 - Pythagorean triplet
 ##############################################################################
+# scrapping my original idea, it's not so slow that I can't
+#   take a more straightforward approach
 
 options = []
-for a in range(1, 333):
-    for b in range(a+1, (1000 - a)//2):
-        options += [{"a": a, "b": b, "c": 1000 - a - b}]
 
-for option in options:
-    if option["a"]**2 + option["b"]**2 == option["c"]:
+for i in range(1, 333):
+    for j in range(i+1, 500):
+        if 1000 - i > 2 * j:
+            options += [[i, j, 1000 - i - j]]
+
+for opt in options:
+    a,b,c = opt[0],opt[1],opt[2]
+    if a < b and b < c and a**2 + b**2 == c**2:
         break
 
-print("Problem 9:", option["a"] * option["b"] * option["c"])
+print("Problem 9:", a * b * c)
 
 ##############################################################################
 # 10 - Sum of primes below two million
 ##############################################################################
+# on this one, I cheated and looked up the algorithm for the sieve of
+#   eratosthenes
+n = int(2E6)
 
-for i in range(all_primes[-1], int(2E6), 2):
-    if is_prime(i):
-        all_primes += [i]
+candidates = {}
+for i in range(3, int(n + 1), 2):
+    candidates[i] = 1
 
-print("Problem 10:", sum(all_primes))
+p = 3
+while p**2 < n:
+    for i in range(p**2, n, 2*p):
+        candidates[i] = 0
+
+    while True:
+        p += 2
+        if candidates[p] == 1:
+            break
+
+total = 2
+for i in range(3, int(n + 1), 2):
+    if candidates[i] == 1:
+        total += i
+
+print("Problem 10:", total)
