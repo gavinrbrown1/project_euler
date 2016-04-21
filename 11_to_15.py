@@ -11,21 +11,63 @@ for row in range(20):
     for column in range(0, 60, 3):
         units[row] += [int(grid[60*row + column:60*row + column + 2])]
 
-for row in range(len(units)):
-    print(units[row])
-
-ans = 0
+products = []
 for i in range(20):
     for j in range(20):
         try:
+            products += [units[i][j] * units[i][j+1] * units[i][j+2] * units[i][j+3]]
+        except:
             pass
-        except IndexError:
-            raise
+        try:
+            products += [units[i][j] * units[i+1][j] * units[i+2][j] * units[i+3][j]]
+        except:
+            pass
+        try:
+            products += [units[i][j] * units[i+1][j+1] * units[i+2][j+1] * units[i+3][j+3]]
+        except:
+            pass
+        try:
+            products += [units[i][j] * units[i+1][j-1] * units[i+2][j-2] * units[i+3][j-3]]
+        except:
+            pass
+
+ans = 0
+for product in products:
+    if ans < product:
+        ans = product
+
+print("Problem 11:", ans)
 
 ##############################################################################
-# 12
+# 12 Highly divisible triangular numbers
 ##############################################################################
-#
+# with over 500 divisors
+
+import math
+
+# try brute force
+def num_divisors(n):
+    divisors = 1
+    for i in range(2, int(math.sqrt(n))):
+        if n % i == 0:
+            divisors += 2
+    return(divisors)
+
+n = 1
+triangle = 1
+next_natural = 2
+while n <= 500:
+    triangle += next_natural
+    next_natural += 1
+    n = num_divisors(triangle)
+    # print(triangle, ":", n)
+
+print("Problem 12:", triangle)
+
+
+
+
+
 
 ##############################################################################
 # 13
