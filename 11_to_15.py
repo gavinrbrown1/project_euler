@@ -82,9 +82,40 @@ print("Problem 13:", total[0:10])
 
 
 ##############################################################################
-# 14
+# 14 - Longest Collatz sequence
 ##############################################################################
-#
+# with start under one million
+
+lengths = {1: 1} # in the below function, n will also index
+
+def collatz_length(n):
+    if n in lengths.keys:
+        ans = lengths[n]
+    else:
+        if n % 2 == 0:
+            next_num = n / 2
+        else:
+            next_num = 3*n + 1
+        ans = 1 + collatz_length(next_num)
+        lengths[n] = ans
+    return(ans)
+
+longest_start = 1
+for start in range(2, 1E6):
+    length = collatz_length(start):
+    if longest_start < length:
+        longest_start = length
+
+print("Problem 13:", longest_start) 
+
+
+
+
+
+
+
+
+
 
 ##############################################################################
 # 15
