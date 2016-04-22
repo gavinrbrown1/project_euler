@@ -89,7 +89,7 @@ print("Problem 13:", total[0:10])
 lengths = {1: 1} # in the below function, n will also index
 
 def collatz_length(n):
-    if n in lengths.keys:
+    if n in lengths:
         ans = lengths[n]
     else:
         if n % 2 == 0:
@@ -101,12 +101,14 @@ def collatz_length(n):
     return(ans)
 
 longest_start = 1
-for start in range(2, 1E6):
-    length = collatz_length(start):
-    if longest_start < length:
-        longest_start = length
+longest_length = 1
+for start in range(2, int(1E6)):
+    length = collatz_length(start)
+    if longest_length < length:
+        longest_length = length
+        longest_start = start
 
-print("Problem 13:", longest_start) 
+print("Problem 13:", longest_start)
 
 
 
